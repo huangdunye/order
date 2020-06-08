@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>菜单列表</title>
+<meta name="viewport" content="initial-scale=1, maximum-scale=1">
+<link rel="shortcut icon" href="/favicon.ico">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<link rel="stylesheet"
+	href="//g.alicdn.com/msui/sm/0.6.2/css/sm.min.css">
+<link rel="stylesheet"
+	href="//g.alicdn.com/msui/sm/0.6.2/css/sm-extend.min.css">
+<link rel="stylesheet" href="../resources/css/menuList.css">
+</head>
+<body>
+	<header class="bar bar-nav">
+		<h1 class="title">菜单列表</h1>
+		<h2 id="js-export">导出</h2>
+	</header>
+	<div class="content">
+		<div class="content-block">
+			<div class="row row-shop">
+			    <div class="col-25">ID</div>
+				<div class="col-25">菜单名称</div>
+				<div class="col-25">上级ID</div>
+				<div class="col-25">操作</div>
+			</div>
+			<div class="row row-shop" v-for="list in lists">
+			     <div class="col-25">{{list.id}}</div>
+				<div class="col-25">{{dateFormat(list.createtime)}}</div>
+				<div class="col-25" v-if="list.pid==null">无 </div>
+				<div class="col-25" v-else >{{list.pid}} </div>
+			
+				<div class="col-25" v-if="list.pid==null">
+					<span @click="nextlevel(list.id)" style="color: blue">添加下级</span>
+					<span @click="deletelist(list.id,list.pid)" style="color: blue">删除</span>
+
+				</div>
+				<div class="col-25" v-if="list.pid!=null">
+					<span @click="deletelist(list.id,list.pid)" style="color: blue">删除</span>
+				</div>
+			</div>
+
+			<div class="shop-wrap"></div>
+
+		</div>
+		<!--  <div class="content-block">
+			<div class="row">
+				<div class="col-50">
+					<a href="" id="log-out"
+						class="button button-big button-fill button-danger">退出系统</a>
+				</div>
+                <div class="col-50">
+                    <a href="/myo2o/shop/changepsw" class="button button-big button-fill button-success">修改密码</a>
+                </div>
+			</div>
+		</div> -->
+	</div>
+
+
+
+	<script type='text/javascript'
+		src='//g.alicdn.com/sj/lib/zepto/zepto.min.js' charset='utf-8'></script>
+	<script type='text/javascript'
+		src='//g.alicdn.com/msui/sm/0.6.2/js/sm.min.js' charset='utf-8'></script>
+	<script type='text/javascript'
+		src='//g.alicdn.com/msui/sm/0.6.2/js/sm-extend.min.js' charset='utf-8'></script>
+	<!--  <script type='text/javascript' src='../resources/js/shop/shoplist.js' charset='utf-8'></script> -->
+	
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	<script type='text/javascript'
+		src='../resources/js/menlist.js' charset='utf-8'></script>
+		
+</body>
+</html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <style type="text/css">
+            a,  center, cite, code, dd, del, div, dl, dt, em, fieldset, figcaption, figure, footer, form, h1, h2, h3, h4, h5, h6, header, hr, html, img, input, label, legend, li, mark, ol, p, section, span, strong, textarea, time, ul, var input{
+                margin: 0;
+                border: 0;
+                padding: 0;
+                font-style: normal;
+                color: #323232;
+                box-sizing: border-box;
+                -moz-box-sizing:border-box; /* Firefox */
+                -webkit-box-sizing:border-box; /* Safari */
+            }
+            html,body{
+                background: #fff;
+            }
+            ul{
+                width: 60%;
+                /*border:1px solid #ccc;*/
+                margin:20px auto;
+                text-decoration: none;
+                list-style-type: none;
+                padding-bottom: 1%;
+            }
+            ul:after{
+                content: "";
+                display: block;
+                width: 100%;
+                height: 0;
+                clear: both;
+            }
+            .video_list>li{
+                float: left;
+                width: 32%;
+                text-align: center;
+                border: 1px solid #ccc;
+                padding-top: 31%;
+                margin-left: 1%;
+                margin-top: 1%;
+                position: relative;
+                border-radius: 5px;
+            }
+            .video_list>li>div{
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 100%;
+                height: 100%;
+                background-color: #fdb274;
+            }
+            .video_list>li>div>span{
+                display: inline-block;
+                margin-top: 50%;
+                -webkit-transform: translateY(-50%);
+                transform: translateY(-50%);
+            }
+            #btnwrap{
+                width: 70%;
+                margin:10px auto;
+                text-align: center;
+
+            }
+            #btnwrap input{
+                width: 100%;
+                height: 35px;
+                margin-bottom: 10px;
+                border-radius: 5px;
+                border:1px solid orange;
+                background-color: #fff;
+            }
+            #btnwrap input:hover{
+                background-color: orange;
+            }
+
+        </style>
+    </head>
+    <body>
+        <ul class="video_list">
+            <li><div><span>1</span></div></li>                    
+            <li><div><span>2</span></div></li>                    
+            <li><div><span>3</span></div></li>                    
+            <li><div><span>4</span></div></li>                    
+            <li><div><span>5</span></div></li>                    
+            <li><div><span>6</span></div></li>                    
+            <li><div><span>7</span></div></li>                    
+            <li><div><span>8</span></div></li>                    
+            <li><div><span>9</span></div></li>                    
+        </ul>
+       
+        
+    </body>
+</html>

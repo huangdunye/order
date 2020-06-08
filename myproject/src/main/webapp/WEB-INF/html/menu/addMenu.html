@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>添加菜单</title>
+<meta name="viewport" content="initial-scale=1, maximum-scale=1">
+<link rel="shortcut icon" href="/favicon.ico">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<link rel="stylesheet"
+	href="//g.alicdn.com/msui/sm/0.6.2/css/sm.min.css">
+<link rel="stylesheet"
+	href="//g.alicdn.com/msui/sm/0.6.2/css/sm-extend.min.css">
+</head>
+<body>
+	<header class="bar bar-nav">
+		<h1 class="title">添加菜单</h1>
+	</header>
+	<div class="content">
+		<div class="list-block">
+			<ul>
+				<li>
+					<div class="item-content">
+						<div class="item-media">
+							<i class="icon icon-form-name"></i>
+						</div>
+						<div class="item-inner">
+							<div class="item-title label">菜单名称</div>
+							<div class="item-input">
+								<input type="text" id="menu_name" placeholder="菜单名称">
+							</div>
+						</div>
+					</div>
+				</li>
+				<li>
+					<div class="item-content">
+						<div class="item-media">
+							<i class="icon icon-form-email"></i>
+						</div>
+						<!-- 	<div class="item-inner">
+							<div class="item-title label">菜单级别</div>
+							<div class="item-input">
+								<select id="level">
+								<option value="1">一级菜单</option>
+								<option value="2">二级菜单</option>
+								</select>
+							</div>
+						</div> -->
+					</div>
+				</li>
+			</ul>
+			<div class="content-block">
+				<div class="row">
+					<div class="col-50">
+						<a href="/myproject/menu/menuList"
+							class="button button-big button-fill button-danger">返回</a>
+					</div>
+					<div class="col-50">
+						<a href="#" class="button button-big button-fill" id="submit">提交</a>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+
+
+	<script type='text/javascript'
+		src='//g.alicdn.com/sj/lib/zepto/zepto.js' charset='utf-8'></script>
+	<script type='text/javascript'
+		src='//g.alicdn.com/msui/sm/0.6.2/js/sm.min.js' charset='utf-8'></script>
+	<script type='text/javascript'
+		src='//g.alicdn.com/msui/sm/0.6.2/js/sm-extend.min.js' charset='utf-8'></script>
+	<!-- <script type='text/javascript'
+		src='../resources/js/common/commonutil.js' charset='utf-8'></script> -->
+	<!-- <script type='text/javascript' src='../resources/js/shop/shopedit.js'
+		charset='utf-8'></script> -->
+
+	<script type='text/javascript'
+		src='../resources/js/jquery-1.11.2.min.js' charset='utf-8'></script>
+
+	<script type="text/javascript">
+		$(function() {
+			$('#submit').click(function() {
+			
+				var url = window.location.search;
+				var pid = null//获取url中"?"符后的字串  
+				if (url.indexOf("?") != -1) {
+					pid = url.substr(url.indexOf("=") + 1);
+				} 
+			alert(pid)
+				var menu_name = $("#menu_name").val();
+				var level = $("#level").val();
+				$.ajax({
+					url : "/myproject/menu/addmenu",
+					type : "post",
+					data : {
+						"menu_name" : menu_name,
+						"level" : level,
+						"pid" : pid
+					},
+					dataType : "json",
+					success : function(data) {
+						console.log(data)
+						if (data) {
+							alert("添加成功");
+							alert(url)
+							if(url.indexOf("?") != -1)
+							{
+							url = url.split("?")[0];
+							console.log(url);
+							}
+							window.location.href = '/myproject/menu/menuList';
+						} else {
+							alert("添加失败");
+						}
+					}
+				});
+			})
+		})
+	</script>
+</body>
+</html>

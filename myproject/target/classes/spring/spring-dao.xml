@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context.xsd">
+    <!-- 引入数据库配置文件 -->
+    <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+    <property name="location">
+    
+      <value>
+    classpath:jdbc.properties
+    </value>
+  
+    
+    </property>
+    <property name="fileEncoding" value="UTF-8" />
+    </bean>
+    <!-- 数据库连接池 -->
+    <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+   <property name="driverClass" value="${jdbc.driver}" />
+		<property name="jdbcUrl" value="${jdbc.url}" />
+		<property name="user" value="${jdbc.username}" />
+		<property name="password" value="${jdbc.password}" />
+    <!-- 连接池私有属性 -->
+    <property name="maxPoolSize" value="30"/>
+	<property name="minPoolSize"  value="10"/>
+	<property name="autoCommitOnClose" value="false" />
+	<property name="checkoutTimeout" value="10000" />
+	<property name="acquireRetryAttempts" value="2"/>
+    </bean>
+    <!-- 配置SqlSessionFactory 对象 -->
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+    <!-- 注入数据连接池 -->
+    <property name="dataSource" ref="dataSource"/>
+    <!-- 配置mybaties的mybatis-config.xml文件 -->
+    <property name="configLocation" value="classpath:mybatis-config.xml"/>
+    <!-- 扫描entity包使用别名 -->
+    <property name="typeAliasesPackage" value="com.hdy.myproject.entity"/>
+    <!-- 扫描sql配置文件mapper需要的xml -->
+    <property name="mapperLocations" value="classpath:mapper/*.xml"/>
+    </bean>
+    <!-- 扫描dao接口包 -->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+    <!-- 注入sqlSessionFactory -->
+    <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
+    <property name="basePackage" value="com.hdy.myproject.dao"/>
+    </bean>
+    
+</beans>
